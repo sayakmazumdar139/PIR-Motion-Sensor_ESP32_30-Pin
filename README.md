@@ -43,7 +43,6 @@ Without this library, the ESP32 cannot communicate with the I2C LCD.
 
 LiquidCrystal_I2C.h:
 This library provides functions such as:
-
 lcd.init()
 lcd.print()
 lcd.clear()
@@ -57,51 +56,41 @@ Define GPIO Pins:
 #define PIR_PIN     27
 #define LED_PIN     26
 #define BUZZER_PIN  25
-Purpose
-
+Purpose:
 These are preprocessor macros.
 
-Instead of writing
+Instead of writing ⬇️
+          digitalRead(27);
 
-digitalRead(27);
+we simply write ⬇️ 
+          digitalRead(PIR_PIN);
 
-we simply write
+Advantages:
+✅Easy to modify
+✅Easy to read
+✅Professional coding practice
 
-digitalRead(PIR_PIN);
-
-Advantages
-
-Easy to modify
-Easy to read
-Professional coding practice
-Step 3: Create LCD Object
+Step 3: Create LCD Object:
 LiquidCrystal_I2C lcd(0x27,16,2);
-
 Here we create an LCD object.
 
-Meaning of each parameter
+Meaning of each parameter:
 
 0x27
-
 LCD I2C Address
 
 Most LCD modules use
-
 0x27
 
 Some use
-
 0x3F
 16
 
 means
-
 16 Columns
 
 2
-
 means
-
 2 Rows
 
 So the library now knows:
@@ -110,138 +99,103 @@ So the library now knows:
 
 Step 4: setup()
 void setup()
-
 This function executes only once after powering the ESP32 or pressing RESET.
 
-Purpose
-
+Purpose:
 Initialize everything before the main program starts.
 
 Step 5: Start Serial Communication
 Serial.begin(115200);
-
 This opens communication between
 
 ESP32 ↔ Arduino IDE Serial Monitor
 
-Speed
-
+Speed:
 115200 bits/sec
 
-This allows messages like
-
+This allows messages like;
 Motion Detected
 
 to appear on the Serial Monitor.
 
-Step 6: Configure GPIO Directions
+Step 6: Configure GPIO Directions:
 pinMode(PIR_PIN, INPUT);
 
 GPIO27 becomes an Input Pin.
-
 ESP32 now waits for signals from the PIR sensor.
 
 pinMode(LED_PIN, OUTPUT);
-
 GPIO26 becomes an Output.
 
-ESP32 can
-
+ESP32 can:
 ON
-
 OFF
-
 the LED.
 
 pinMode(BUZZER_PIN, OUTPUT);
-
 GPIO25 becomes an Output.
-
 ESP32 can control the buzzer.
 
-Step 7: Initialize LCD
+Step 7: Initialize LCD:
 lcd.init();
-
 Starts communication between
-
 ESP32 ↔ LCD
 
 lcd.backlight();
-
 Turns ON the LCD backlight.
+Without this, the LCD may appear blank even if it is working.
 
-Without this,
-
-the LCD may appear blank even if it is working.
-
-Step 8: Display Welcome Message
+Step 8: Display Welcome Message:
 lcd.setCursor(0,0);
-
-Cursor Position
-
-Column = 0
-Row = 0
-
+Cursor Position ⬇️
+              Column = 0
+              Row = 0
 Top-left corner.
 
 lcd.print("ESP32 Security");
+LCD displays ⬇️
+       ESP32 Security
 
-LCD displays
-
-ESP32 Security
-
-Next
+Next:
 
 lcd.setCursor(0,1);
-
-Moves cursor to
-
-Column 0
-Row 1
-
+Moves cursor to ⬇️
+             column 0
+             row 1
 Second line.
 
 lcd.print("System Ready");
 
-LCD becomes
-
+LCD becomes ⬇️
 ESP32 Security
 System Ready
-Step 9: Wait
+
+Step 9: Wait:
 delay(2000);
 
 Wait
-
-2000 ms
-
-=
-
-2 seconds
+     2000 ms
+     =
+     2 seconds
 
 So the welcome screen stays visible.
 
-Step 10: Clear LCD
+Step 10: Clear LCD:
 lcd.clear();
-
 Removes the welcome message.
-
 Now the LCD is ready to display motion status.
 
 Step 11: loop()
 void loop()
-
 This function runs forever.
 
-Think of it as
-
-while(1)
-{
-
-}
-
+Think of it as ⬇️
+           while(1)
+           {
+            }
 The ESP32 continuously checks for motion.
 
-Step 12: Read PIR Sensor
+Step 12: Read PIR Sensor:
 int motion = digitalRead(PIR_PIN);
 
 ESP32 reads GPIO27.
