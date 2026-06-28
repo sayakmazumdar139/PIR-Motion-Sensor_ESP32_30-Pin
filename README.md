@@ -22,7 +22,7 @@ This project demonstrates sensor interfacing, GPIO control, digital input proces
 
 
 
-✅ LIVE DEMO VIDEO 👇👇
+✅ LIVE DEMO VIDEO 👉 
 https://youtu.be/hbSTvOhFKRw?si=ngEltUlJ7exRDXnp
 
 
