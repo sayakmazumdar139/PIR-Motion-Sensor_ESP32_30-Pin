@@ -1,8 +1,7 @@
 # PIR-Motion-Sensor_ESP32_30-Pin
 OBJECTIVE: This project uses an ESP32 DevKit V1 with a PIR motion sensor to detect human movement. When motion is detected, the ESP32 activates an LED and buzzer while displaying "Motion Detected!" on a 16×2 LCD. If no motion is detected, the LCD shows "No Motion – Monitoring..." and the outputs remain OFF. This demonstrates digital sensor interfacing, GPIO control, and real-time embedded firmware development using Embedded C in the Arduino IDE.
-✅🔰⬇️⬆️▫️▪️◾◽◼️◻️🔸🟡🔴♦️
-Working Principle / Operation: 
 
+Working Principle / Operation: 
 🟡 The project uses an ESP32 DevKit V1 as the main controller and a PIR (Passive Infrared) motion sensor to detect human movement. The PIR sensor senses changes in infrared radiation emitted by a moving human body and sends a HIGH digital signal to the ESP32 whenever motion is detected.
 
 The ESP32 continuously monitors the PIR sensor output. When motion is detected, it:
@@ -21,7 +20,10 @@ When no motion is detected, the ESP32:
 
 This project demonstrates sensor interfacing, GPIO control, digital input processing, and real-time embedded system programming using the ESP32.
 
-The PIR sensor detects human motion by sensing changes in infrared radiation. The ESP32 continuously reads the sensor output. If motion is detected, it switches ON the LED and buzzer, displays 'Motion Detected' on the LCD, and prints the status on the Serial Monitor. If no motion is detected, all outputs remain OFF while the system continuously monitors the surroundings.
+
+
+✅ LIVE DEMO VIDEO 👇👇
+https://youtu.be/hbSTvOhFKRw?si=ngEltUlJ7exRDXnp
 
 
 Complete Firmware Working (Step-by-Step)
@@ -197,174 +199,136 @@ The ESP32 continuously checks for motion.
 
 Step 12: Read PIR Sensor:
 int motion = digitalRead(PIR_PIN);
-
 ESP32 reads GPIO27.
 
-Possible values
-
-LOW
-
-or
-
-HIGH
-
-Store it in variable
-
+Possible values 👇👇
+                LOW
+                or
+                HIGH
+                
+Store it in variable:
 motion
 
 If
-
 motion == HIGH
-
-means
-
-PIR has detected motion.
+means 👉 PIR has detected motion.
 
 If
-
 motion == LOW
+means 👉 No motion.
 
-means
-
-No motion.
-
-Step 13: Decision Making
+Step 13: Decision Making:
 if(motion == HIGH)
-
-ESP32 checks
-
+ESP32 checks 👇👇
 "Has the PIR detected motion?"
-
-If YES
-
+If YES ⬇️
 execute the following block.
 
-Step 14: Print on Serial Monitor
+Step 14: Print on Serial Monitor:
 Serial.println("Motion Detected");
 
-Serial Monitor shows
+Serial Monitor shows 👇👇
+                Motion Detected 
+that's Useful for debugging.
 
-Motion Detected
-
-Useful for debugging.
-
-Step 15: Turn ON LED
+Step 15: Turn ON LED:
 digitalWrite(LED_PIN,HIGH);
 
-GPIO26 outputs
-
-3.3V
-
+GPIO26 outputs 👇👇
+               3.3V
 LED glows.
-
 Visual indication.
 
-Step 16: Turn ON Buzzer
+Step 16: Turn ON Buzzer:
 digitalWrite(BUZZER_PIN,HIGH);
 
 GPIO25 becomes HIGH.
-
 Buzzer sounds.
-
 Audible indication.
 
-Step 17: Update LCD
+Step 17: Update LCD:
 lcd.clear();
-
 Remove previous text.
 
 lcd.setCursor(0,0);
-
 Cursor
-
 Top Row
 
 lcd.print("Motion");
 
-LCD
+LCD prints ⬇️
 
-Motion
+         Motion
 
 Next
-
 lcd.setCursor(0,1);
-
 Move to second row.
 
 lcd.print("Detected!");
+LCD becomes ⬇️
 
-LCD becomes
-
-Motion
-Detected!
+          Motion
+         Detected!
+         
 Step 18: Wait
 delay(2000);
 
-Keep
+Keep 👉 LED, Buzzer, and LCD ON for 2 seconds. 
 
-LED
-
-Buzzer
-
-LCD
-
-ON for
-
-2 seconds.
-
-Step 19: Else Block
+Step 19: Else Block:
 
 If
-
 motion == LOW
 
-means
+means 👇
+  No human movement.
 
-No human movement.
-
-Step 20: Serial Monitor
+Step 20: Serial Monitor:
 Serial.println("No Motion");
 
-Displays
+Displays 👇👇
 
-No Motion
-Step 21: Turn OFF LED
+      No Motion
+
+Step 21: Turn OFF LED:
 digitalWrite(LED_PIN,LOW);
 
 GPIO26 becomes LOW.
-
 LED OFF.
 
-Step 22: Turn OFF Buzzer
+Step 22: Turn OFF Buzzer:
 digitalWrite(BUZZER_PIN,LOW);
 
 GPIO25 becomes LOW.
-
 Buzzer OFF.
 
-Step 23: LCD Status
+Step 23: LCD Status:
 lcd.clear();
 
-Erase previous message.
+👆👆 Erase previous message.
 
 lcd.setCursor(0,0);
 lcd.print("No Motion");
 
-LCD
+LCD prints 👇👇
 
-No Motion
+         No Motion
+         
 lcd.setCursor(0,1);
 lcd.print("Monitoring...");
 
-LCD
+LCD prints 👇👇
 
-No Motion
-Monitoring...
-Step 24: Small Delay
+        No Motion
+       Monitoring...
+
+Step 24: Small Delay:
 delay(300);
 
-Wait
+means ⬇️
+Wait 300 milliseconds.
 
-300 milliseconds
+👆👆 This prevents the LCD and Serial Monitor from updating too rapidly, reducing flicker and unnecessary processing.
 
-This prevents the LCD and Serial Monitor from updating too rapidly, reducing flicker and unnecessary processing.
+SUMMARY: 
+The PIR sensor detects human motion by sensing changes in infrared radiation. The ESP32 continuously reads the sensor output. If motion is detected, it switches ON the LED and buzzer, displays 'Motion Detected' on the LCD, and prints the status on the Serial Monitor. If no motion is detected, all outputs remain OFF while the system continuously monitors the surroundings.
